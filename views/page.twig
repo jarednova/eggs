@@ -39,8 +39,10 @@
 		<section id="content" role="main" class="white-plate">
 				{% block main %}
 				<article id="post-{{post.ID}}" class="post-{{post.ID}}} {{post.post_type}} type-{{post.post_type}} status-{{post.post_status}} hentry areas-writer">
-
-					{{ post.content }}
+					<h1 class="entry-title">{{post.title}}</h1>
+					<div class="oversize inside">
+						{{ post.content }}
+					</div>
 					{% include 'partials/get-in-touch.twig' %}											
 				</article><!-- #post-## -->
 				{% endblock %}
