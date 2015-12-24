@@ -362,11 +362,7 @@ add_action( 'widgets_init', 'boilerplate_widgets_init' );
 	// Add Admin
 		require_once(TEMPLATEPATH . '/boilerplate-admin/admin-menu.php');
 
-	// remove version info from head and feeds (http://digwp.com/2009/07/remove-wordpress-version-number/)
-		function complete_version_removal() {
-			return '';
-		}
-		add_filter('the_generator', 'complete_version_removal');
+
 /*	End Boilerplate */
 
 include('functions-upstatement.php');

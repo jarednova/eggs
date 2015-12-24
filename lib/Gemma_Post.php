@@ -2,6 +2,10 @@
 
 	class Gemma_Post extends TimberPost {
 
+		public function blocks() {
+			return $this->meta('page_blocks');
+		}
+
 		public function testimonials() {
 			$cats = wp_get_post_terms($this->ID, 'areas');
 			//print_r($cats);

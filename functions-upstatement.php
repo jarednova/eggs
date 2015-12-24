@@ -265,57 +265,9 @@
 		echo '</div> </div>';
 	}
 	
-	function parse_signed_request($signed_request, $secret) {
-		list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
-		// decode the data
-		$sig = base64_url_decode($encoded_sig);
-		$data = json_decode(base64_url_decode($payload), true);
-		if (strtoupper($data['algorithm']) !== 'HMAC-SHA256') {
-			error_log('Unknown algorithm. Expected HMAC-SHA256');
-			return null;
-		}
-		// check sig
-		$expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
-		if ($sig !== $expected_sig) {
-			error_log('Bad Signed JSON signature!');
-			return null;
-		}
-		return $data;
-	}
-	
-	function find_user_by_meta($key, $value){
-		global $wpdb;
-		$query = "SELECT user_id FROM $wpdb->usermeta WHERE meta_key = '$key' AND meta_value = '$value'";
-		$result = $wpdb->get_row($query);
-		return $result->user_id;
-	}
-	
-	function find_post_by_meta($key, $value){
-		$query = "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '$key' AND meta_value = '$value'";
-		$result = $wpdb->get_row($query);
-		return $result->post_id;
-	}
-
-	function base64_url_decode($input) {
-		return base64_decode(strtr($input, '-_', '+/'));
-	}
 
 
-function atk_post_comment_meta($post_id){
-	global $wpdb;
-	$uid = $_POST['user_id'];
-	$query = "UPDATE $wpdb->comments SET user_id = '$uid' WHERE comment_ID = '$post_id'";
-	$result = $wpdb->get_row($query);
-	$name = mysql_real_escape_string($_POST['comment_author']);
-	$query = "UPDATE $wpdb->comments SET comment_author = '$name' WHERE comment_ID = '$post_id'";
-	
-	$result = $wpdb->get_row($query);
-	update_user_meta($uid, 'nickname', $name);
-}
 
-add_action('comment_post', 'atk_post_comment_meta', 1);
-
-add_theme_support( 'admin-bar', array( 'callback' => '__return_false') );
 
 /* CLASS SETTER
 =======================*/
@@ -356,6 +308,3 @@ function get_user_by_nicename($nn){
 	return $user;
 	
 }
-
-add_filter('body_class','my_body_class_names');
-

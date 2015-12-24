@@ -31,6 +31,9 @@
 					{% for item in menu.get_items %}
 						<li id="menu-item-{{item.ID}}" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-{{item.ID}}">
 							<a href="{{item.link}}">{{item.name}}</a>
+							<div>
+								{{item.content|wpautop}}
+							</div>
 						</li>
 					{% endfor %}
 				</ul>
@@ -49,6 +52,14 @@
 					{% endif %}
 					<div class="oversize inside">
 						{{ post.content }}
+					</div>
+					<div class="page-blocks">
+					{% for item in post.blocks %}
+						<h4 class="banner">{{item.subhead}}</h4>
+						<div>
+						{{item.content|wpautop}}
+						</div>
+					{% endfor %}
 					</div>
 					{% include 'partials/testimonials.twig' %}
 					{% include 'partials/get-in-touch.twig' %}											
