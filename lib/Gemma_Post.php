@@ -6,6 +6,15 @@
 			return $this->meta('page_blocks');
 		}
 
+		public function images() {
+			$images = $this->get_field('images');
+			$return = array();
+			foreach($images as $image) {
+				$return[] = new TimberImage($image);
+			}
+			return $return;
+		}
+
 		public function testimonials() {
 			$cats = wp_get_post_terms($this->ID, 'areas');
 			//print_r($cats);

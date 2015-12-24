@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="{{site.theme.link}}/style.css" />
 		<link rel="pingback" href="{{site.pingback_url}}" />
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-		<script type="text/javascript" src="{{site.theme.link}}/static/jsjquery.cycle.min.js"></script>
+		<script type="text/javascript" src="{{site.theme.link}}/static/js/jquery.cycle.min.js"></script>
 		<script type="text/javascript" src="{{site.theme.link}}/static/js/eggs.js"></script>
 
 		{{function('wp_head')}}
@@ -48,11 +48,19 @@
 				<article id="post-{{post.ID}}" class="post-{{post.ID}}} {{post.post_type}} type-{{post.post_type}} status-{{post.post_status}} hentry areas-writer">
 					{% include 'partials/testimonial-featured.twig' with {testimonial: post.featured_testimonial} %}
 					<h1 class="entry-title">{{post.title}}</h1>
-					{% if post.thumbnail %}
-					<div class="fimage">
-						<img src="{{post.thumbnail.src|resize(610, 300)}}">
-						<p class="fcaption caption">{{post.thumbnail.caption}}</p>
-					</div>
+					{% if post.images %}
+						<section class="cycler">
+						{% for image in post.images %}
+						
+							<img class="cycle-image" src="{{ image.src|resize(610,300) }}" alt="{{image.caption|e}}">
+						{% endfor %}
+						</section>
+						<div id="gallery-caption" class="lucida-text"></div>
+					{% elseif post.thumbnail %}
+						<div class="fimage">
+							<img src="{{post.thumbnail.src|resize(610, 300)}}">
+							<p class="fcaption caption">{{post.thumbnail.caption}}</p>
+						</div>
 					{% endif %}
 					<div class="oversize inside">
 						{{ post.content }}
