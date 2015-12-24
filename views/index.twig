@@ -1,0 +1,16 @@
+{% extends 'page.twig' %}
+
+{% block main %}
+
+	{% for p in posts %}
+
+		<article>
+			<h2><a href="{{p.link}}">{{p.title}}</a></h2>
+			<div>
+			{{p.get_preview}}
+			</div>
+		</article>
+
+	{% endfor %}
+
+{% endblock %}
