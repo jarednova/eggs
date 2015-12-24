@@ -30,27 +30,11 @@ function stripslashes (str) {
 }
 
 $(document).ready(function(){
-	createSubMenus();
 	rotateTests();
 	rotateImages();
 	readyContactForm();
 });
 
-function createSubMenus(){
-	if ($('body').hasClass('page-template')){
-		var ul = $('<ul class="sub-menu"></ul>');
-		
-		var j = 0;
-		$('#content .banner').each(function(){
-			var id = 'banner-'+j;
-			$(this).attr('id', id);
-			var li = $('<li class="sub-menu-item"><a href="#'+id+'">'+$(this).text()+'</a></li>');
-			j++;
-			ul.append(li);
-		});
-		$('li.current-menu-item a').after(ul);
-	}
-}
 
 function rotateTests(){
 	var i = 1;

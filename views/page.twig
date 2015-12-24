@@ -11,8 +11,8 @@
 		<link rel="stylesheet" href="{{site.theme.link}}/style.css" />
 		<link rel="pingback" href="{{site.pingback_url}}" />
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-		<script type="text/javascript" src="/wp-content/js/jquery.cycle.min.js"></script>
-		<script type="text/javascript" src="{{site.theme.link}}/eggs.js"></script>
+		<script type="text/javascript" src="{{site.theme.link}}/static/jsjquery.cycle.min.js"></script>
+		<script type="text/javascript" src="{{site.theme.link}}/static/js/eggs.js"></script>
 
 		{{function('wp_head')}}
 
@@ -31,9 +31,13 @@
 					{% for item in menu.get_items %}
 						<li id="menu-item-{{item.ID}}" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-{{item.ID}}">
 							<a href="{{item.link}}">{{item.name}}</a>
-							<div>
-								{{item.content|wpautop}}
-							</div>
+							{% if 'current-menu-item' in item.classes and post.blocks %}
+								<ul class="sub-menu">
+									{% for item in post.blocks %}
+										<li class="sub-menu-item"><a href="#{{item.subhead|sanitize}}">{{item.subhead}}</a></li>
+									{% endfor %}
+								</ul>
+							{% endif %}
 						</li>
 					{% endfor %}
 				</ul>
@@ -55,7 +59,7 @@
 					</div>
 					<div class="page-blocks">
 					{% for item in post.blocks %}
-						<h4 class="banner">{{item.subhead}}</h4>
+						<h4 class="banner" id="{{item.subhead|sanitize}}">{{item.subhead}}</h4>
 						<div class="content">
 						{{item.content|wpautop}}
 						</div>
