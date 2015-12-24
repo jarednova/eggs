@@ -12,13 +12,6 @@
  * @since Boilerplate 1.0
  */
 
-$post = new TimberPost();
-$context = Timber::get_context();
-$context['menu'] = new TimberMenu();
-$context['post'] = $post;
-Timber::render('page.twig', $context);
-return;
-
 get_header(); 
 
 function fullescape($in) 

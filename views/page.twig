@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html <?php language_attributes(); ?> class="no-js ie ie6 lte7 lte8 lte9"><![endif]-->
+<!--[if IE 7 ]><html <?php language_attributes(); ?> class="no-js ie ie7 lte7 lte8 lte9"><![endif]-->
+<!--[if IE 8 ]><html <?php language_attributes(); ?> class="no-js ie ie8 lte8 lte9"><![endif]-->
+<!--[if IE 9 ]><html <?php language_attributes(); ?> class="no-js ie ie9 lte9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html {{site.language_attributes}} class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="{{site.charset}}" />
+		<title>{{wp_title}}</title>
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" href="{{site.theme.link}}/style.css" />
+		<link rel="pingback" href="{{site.pingback_url}}" />
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+		<script type="text/javascript" src="/wp-content/js/jquery.cycle.min.js"></script>
+		<script type="text/javascript" src="{{site.theme.link}}/eggs.js"></script>
+
+		{{function('wp_head')}}
+
+	</head>
+	<body class="{{body_class}}">
+		<div class="splats">
+		<div id="main">
+		<header role="banner" class="header-main">
+			<h1 class="big-name"><a href="{{site.link}}" class="no-style" title="{{site.name}}" rel="home"><strong>Gemma</strong> Cooper-Novack</a></h1>
+			<!--<p><?php bloginfo( 'description' ); ?></p>-->
+		</header>
+		<nav id="access" role="navigation" class="main-nav">
+	  		<a href="#content" class="hidden" title="Skip to content">Skip to content</a>
+			<div class="menu-header main-menu">
+				<ul id="menu-main-menu" class="menu">
+					{% for item in menu.get_items %}
+						<li id="menu-item-{{item.ID}}" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-{{item.ID}}">
+							<a href="{{item.link}}">{{item.name}}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>		
+		</nav><!-- #access -->
+		<section id="content" role="main" class="white-plate">
+
+				<article id="post-{{post.ID}}" class="post-{{post.ID}}} {{post.post_type}} type-{{post.post_type}} status-{{post.post_status}} hentry areas-writer">
+
+					{{ post.content }}
+					{% include 'partials/get-in-touch.twig' %}											
+				</article><!-- #post-## -->
+
+		</section><!-- #main -->
+		<footer role="contentinfo">
+
+			
+		</footer><!-- footer -->
+		{{function('wp_footer') }}
+			</div><!-- /#main -->
+		</div><!-- /.splats -->
+	</body>
+</html>

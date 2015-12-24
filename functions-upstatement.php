@@ -255,12 +255,6 @@
 		echo '</div>'; // end meta text column
 		
 		
-		
-		
-		
-	
-	
-		
 	
 		echo '</div>'; // end meta column;
 		echo '<div class="comment-col-content">';
@@ -305,28 +299,7 @@
 	function base64_url_decode($input) {
 		return base64_decode(strtr($input, '-_', '+/'));
 	}
-/*
-if (!function_exists('json_decode')) {
-    function json_decode($content, $assoc=false) {
-        require_once 'JSON/JSON.php';
-        if ($assoc) {
-            $json = new Services_JSON(SERVICES_JSON_LOOSE_TYPE);
-        }
-        else {
-            $json = new Services_JSON;
-        }
-        return $json->decode($content);
-    }
-}
 
-if (!function_exists('json_encode')) {
-    function json_encode($content) {
-        require_once 'JSON/JSON.php';
-        $json = new Services_JSON;
-        return $json->encode($content);
-    }
-}
-*/
 
 function atk_post_comment_meta($post_id){
 	global $wpdb;
@@ -385,20 +358,4 @@ function get_user_by_nicename($nn){
 }
 
 add_filter('body_class','my_body_class_names');
-/*
-	wp_schedule_event(time(), 'hourly', 'cron_by_hour');
-	
-	
-	function cron_by_hour() {
-		call_url('http://beta.kendallsq.org/wp-content/feeds/greenhorn/parser.php');
-		call_url('http://beta.kendallsq.org/wp-content/feeds/curata/parser.php');
-	}
-	
-	function call_url($url){
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_HEADER, 0);
-		curl_exec($ch);
-		curl_close($ch);
-	}
-*/
+
