@@ -44,6 +44,11 @@
  * Used to set the width of images and content. Should be equal to the width the theme
  * is designed for, generally via the style.css stylesheet.
  */
+
+require_once('lib/Gemma_Post.php');
+
+add_theme_support('post-thumbnails');
+
 if ( ! isset( $content_width ) )
 	$content_width = 640;
 

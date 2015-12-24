@@ -12,7 +12,7 @@
  * @since Boilerplate 1.0
  */
 
-$post = new TimberPost();
+$post = new Gemma_Post();
 $context = Timber::get_context();
 $context['menu'] = new TimberMenu();
 $context['post'] = $post;

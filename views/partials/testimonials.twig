@@ -1,0 +1,12 @@
+<h4 class="banner">Testimonials</h4>
+
+	{% for testimonial in post.testimonials %}
+
+	<div class="testimonial">
+		<div class="quote-big">{{testimonial.content}}</div>
+		<p class="who museo-text">{{testimonial.person_name}}</p>
+		<p class="what museo-text">{{testimonial.person_title}}</p>
+	</div>
+
+	{% endfor %}
+	

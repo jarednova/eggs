@@ -39,10 +39,18 @@
 		<section id="content" role="main" class="white-plate">
 				{% block main %}
 				<article id="post-{{post.ID}}" class="post-{{post.ID}}} {{post.post_type}} type-{{post.post_type}} status-{{post.post_status}} hentry areas-writer">
+					{% include 'partials/testimonial-featured.twig' with {testimonial: post.featured_testimonial} %}
 					<h1 class="entry-title">{{post.title}}</h1>
+					{% if post.thumbnail %}
+					<div class="fimage">
+						<img src="{{post.thumbnail.src|resize(610, 300)}}">
+						<p class="fcaption caption">{{post.thumbnail.caption}}</p>
+					</div>
+					{% endif %}
 					<div class="oversize inside">
 						{{ post.content }}
 					</div>
+					{% include 'partials/testimonials.twig' %}
 					{% include 'partials/get-in-touch.twig' %}											
 				</article><!-- #post-## -->
 				{% endblock %}
