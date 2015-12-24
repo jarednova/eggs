@@ -698,3 +698,12 @@ letter-spacing: 2px;
 #get-in-touch {
 	min-height:500px;
 }
+
+.page-blocks .content {
+	line-height: 1.6;
+}
+
+.page-blocks .banner {
+	margin-bottom: 20px;
+	font-size: 16px;
+}
